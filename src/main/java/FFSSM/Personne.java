@@ -19,6 +19,8 @@ public class Personne
 	public String telephone;
 	
 	public LocalDate naissance;
+        
+        public GroupeSanguin gs;
 
     public Personne(String numeroINSEE, String nom, String prenom, String adresse, String telephone, LocalDate naissance) {
         setNumeroINSEE(numeroINSEE); // Le mutateur fait le contrôle non null
@@ -27,7 +29,18 @@ public class Personne
         this.adresse = adresse;
         this.telephone = telephone;
         this.naissance = naissance;
+        this.gs=gs;
     }
+
+    public void setGs(GroupeSanguin gs) {
+        this.gs = gs;
+    }
+
+    public GroupeSanguin getGs() {
+        return gs;
+    }
+    
+    
 
     public String getNumeroINSEE() {
         return numeroINSEE;
@@ -35,9 +48,9 @@ public class Personne
 
     public void setNumeroINSEE(String numeroINSEE) {
         // Vérifier la cardinalité implicite [1]
-	if (null == numeroINSEE)
-		throw new IllegalArgumentException("numeroINSEE is null");
-        this.numeroINSEE = numeroINSEE;
+	if (null == numeroINSEE) {
+		throw new IllegalArgumentException("numeroINSEE is null"); }
+        this.numeroINSEE = numeroINSEE; 
     }
 
     public String getNom() {

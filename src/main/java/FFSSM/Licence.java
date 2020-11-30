@@ -4,6 +4,7 @@
 package FFSSM;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class Licence {
 
@@ -15,11 +16,19 @@ public class Licence {
 
     public Club club;
 
-    public Licence(Personne possesseur, String numero, LocalDate delivrance, Club club) {
+    public int niveau;
+
+    public Boolean valide;
+
+    public Licence(Personne possesseur, String numero, LocalDate delivrance, int niveau, Club club) {
         this.possesseur = possesseur;
         this.numero = numero;
         this.delivrance = delivrance;
         this.club = club;
+        this.valide = true;
+        this.niveau = niveau;
+        
+
     }
 
     public Personne getPossesseur() {
@@ -37,16 +46,19 @@ public class Licence {
     public Club getClub() {
         return club;
     }
+    
+    public void setValid(boolean b) {
+        valide = b;
+    }
 
-    /**
-     * Est-ce que la licence est valide à la date indiquée ?
-     * Une licence est valide pendant un an à compter de sa date de délivrance
-     * @param d la date à tester
-     * @return vrai si valide à la date d
-     **/
     public boolean estValide(LocalDate d) {
-         // TODO: Implémenter cette méthode
-        throw new UnsupportedOperationException("Pas encore implémenté");
+        if (d.isBefore(delivrance.plusYears(1))) {
+            return true;
+
+        } else {
+            return false;
+        }
+
     }
 
 }
